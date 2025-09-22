@@ -5,8 +5,8 @@ Data cleaning &amp; preprocessing of the Kaggle Medical Appointment No Shows dat
 # Medical Appointment - Data Cleaning
 
 **Project:** Data cleaning & preprocessing of the Kaggle "Medical Appointment No Shows" dataset  
-**Author:** <Your Name>  
-**Date:** <YYYY-MM-DD>
+**Author:** Saravana Chandran  
+**Date:** 22-09-2025
 
 ## Overview
 This repository contains a step-by-step data cleaning process for the "Medical Appointment No Shows" dataset using Python and Pandas. The goal is to produce a clean dataset ready for analysis or modeling.
