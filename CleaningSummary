@@ -1,0 +1,44 @@
+# Cleaning Summary - Medical Appointment No Shows Dataset
+
+## Dataset Overview
+- **Original Shape:** 110,527 rows × 14 columns
+- **Final Shape:** 110,526 rows × 14 columns
+- **Duplicates Removed:** 0
+- **Invalid Records Removed:** 1 (negative age)
+
+---
+
+## Cleaning Steps
+1. **Column Names**
+   - Renamed all columns to `snake_case` for consistency (e.g., `No-show` → `no_show`).
+
+2. **Date Columns**
+   - Converted `scheduledday` and `appointmentday` to `datetime`.
+
+3. **Age Column**
+   - Removed 1 record with invalid negative age.
+   - Valid age range restricted to 0–120.
+
+4. **Gender Column**
+   - Standardized values: `"M" → "male"`, `"F" → "female"`.
+
+5. **No-show Column**
+   - Converted `"No"` → `0` and `"Yes"` → `1` (binary integer).
+
+6. **Missing Values**
+   - Verified that no missing values remain in the dataset.
+
+7. **Duplicates**
+   - Checked and confirmed there were no duplicate rows.
+
+---
+
+## Final Deliverables
+- **Cleaned Dataset:** `data/cleaned/KaggleV2_Cleaned.csv`
+- **Notebook/Code:** `notebooks/01_data_cleaning.ipynb`
+- **Summary Report:** `reports/CLEANING_SUMMARY.md`
+
+---
+
+## Notes
+- Dataset is now analysis-ready and suitable for further processing, visualization, or modeling.
