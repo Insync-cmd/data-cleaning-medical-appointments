@@ -36,4 +36,4 @@ This repository contains a step-by-step data cleaning process for the "Medical A
 MIT
 
 ## Contact
-<Your Name> — <your email / GitHub profile>
+<Saravana_Chandran> — <saravanachandranc@gmail.com / github.com/Insync-cmd>
