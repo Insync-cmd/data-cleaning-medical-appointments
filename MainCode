@@ -1,0 +1,80 @@
+import pandas as pd
+
+file_path = "/content/drive/MyDrive/Elevate_Labs_Data_Analyst_Internship /KaggleV2-May-2016.csv"
+df = pd.read_csv(file_path)
+
+print("Shape:", df.shape)
+df.head()
+
+# Info about columns & datatypes
+df.info()
+
+# Summary statistics (numeric)
+df.describe(include='all')
+
+# Count missing values
+print("\nMissing values per column:")
+print(df.isnull().sum())
+
+# Count duplicates
+print("\nNumber of duplicate rows:", df.duplicated().sum())
+
+# Info about columns & datatypes
+df.info()
+
+# Summary statistics (numeric)
+df.describe(include='all')
+
+# Count missing values
+df.isnull().sum()
+
+# Count duplicates
+print("Number of duplicate rows:", df.duplicated().sum())
+
+# 1. Rename columns (clean formatting)
+df.columns = (df.columns
+                .str.strip()
+                .str.lower()
+                .str.replace(" ", "_")
+                .str.replace("-", "_"))
+print("Renamed columns:", df.columns.tolist())
+
+# 2. Convert dates
+df['scheduledday'] = pd.to_datetime(df['scheduledday'], errors='coerce')
+df['appointmentday'] = pd.to_datetime(df['appointmentday'], errors='coerce')
+
+# 3. Clean age
+before = df.shape[0]
+df = df[(df['age'] >= 0) & (df['age'] <= 120)]
+after = df.shape[0]
+print(f"Removed {before - after} rows with invalid ages")
+
+# 4. Standardize gender
+df['gender'] = df['gender'].str.strip().str.lower()
+df['gender'] = df['gender'].replace({'f':'female','m':'male'})
+
+# 5. Convert no_show to binary
+df['no_show'] = df['no_show'].str.strip().str.lower().map({'no':0,'yes':1})
+
+# 6. Remove duplicates
+dups = df.duplicated().sum()
+df = df.drop_duplicates()
+print("Duplicates removed:", dups)
+
+print(df.dtypes)          # Are dates really datetime?
+print(df['gender'].value_counts())
+print(df['no_show'].value_counts())
+df.isnull().sum()         # Any missing values left?
+
+# If folder really has a space at the end
+cleaned_path = "/content/drive/MyDrive/Elevate_Labs_Data_Analyst_Internship /KaggleV2_Cleaned.csv"
+
+# OR if you want to create a new folder without spaces (cleaner for GitHub)
+new_dir = "/content/drive/MyDrive/Elevate_Labs_Data_Analyst_Internship_Clean"
+import os
+os.makedirs(new_dir, exist_ok=True)
+
+cleaned_path = os.path.join(new_dir, "KaggleV2_Cleaned.csv")
+df.to_csv(cleaned_path, index=False)
+
+print("✅ Cleaned dataset saved at:", cleaned_path)
